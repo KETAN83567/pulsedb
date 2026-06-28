@@ -1,5 +1,12 @@
 # PulseDB — Incremental, Quality-Gated Analytics for Open-Source Activity
 
+[![CI](https://github.com/KETAN83567/pulsedb/actions/workflows/ci.yml/badge.svg)](https://github.com/KETAN83567/pulsedb/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/python-3.12-blue)
+![dbt](https://img.shields.io/badge/dbt-1.11-orange)
+![Dagster](https://img.shields.io/badge/orchestration-Dagster-purple)
+![DuckDB](https://img.shields.io/badge/warehouse-DuckDB-yellow)
+![License](https://img.shields.io/badge/license-MIT-green)
+
 PulseDB is a local-first analytics warehouse that turns the public
 [GitHub Archive](https://www.gharchive.org/) event firehose into a
 **repository-momentum** data product — with the production concerns that
@@ -53,6 +60,31 @@ flowchart LR
 | **Bronze** | `raw.gh_events` | Raw events, idempotently merged on `event_id` |
 | **Silver** | `stg_events`, `quarantine_events`, `int_repo_daily_activity` | Typed + UTC-standardized, quality-gated, daily rollup |
 | **Gold** | `dim_repo`, `dim_actor`, `fact_events`, `agg_daily_repo_momentum` | Star schema + the headline momentum metric |
+
+## Dashboard
+
+A two-page Streamlit app (dark-themed, fully interactive) sits on top of the
+warehouse:
+
+**Business view** — tabbed (Activity / Repositories / Contributors):
+- a **linked brush timeline** — drag across the minute-level event timeline to
+  recompute the event-type breakdown for that window (client-side, instant);
+- normalized **composition-over-time** and an event-mix donut;
+- an **actor-colored momentum leaderboard** with a min-distinct-actors filter
+  that strips out single-actor bot spam;
+- a **long-tail events-per-repo distribution** (log scale);
+- a **searchable repository drill-down** — pick any repo to see its event
+  breakdown, activity timeline, and top contributors;
+- human-vs-bot contribution analytics.
+
+**Pipeline-health view** — freshness vs. SLA, success-rate, throughput per
+partition, an interactive run-duration timeline, and the full run log from
+`meta.pipeline_runs`. (The operational page most portfolio dashboards omit.)
+
+<!-- Screenshots — drop PNGs into docs/screenshots/ with these names. -->
+| Business view | Pipeline health |
+|---|---|
+| ![Business dashboard](docs/screenshots/dashboard_business.png) | ![Pipeline health](docs/screenshots/dashboard_health.png) |
 
 ## Quickstart
 
