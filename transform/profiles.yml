@@ -9,3 +9,16 @@ pulsedb:
       path: "../pulsedb.duckdb" # warehouse lives at the project root
       threads: 4
       schema: main
+
+# Used by the `edr` CLI to render the Elementary observability HTML report.
+# edr runs its internal dbt from a different cwd, so a relative path breaks;
+# point PULSEDB_DUCKDB at the absolute warehouse path when running edr.
+# Generated via: dbt run-operation elementary.generate_elementary_cli_profile
+elementary:
+  target: default
+  outputs:
+    default:
+      type: duckdb
+      path: "{{ env_var('PULSEDB_DUCKDB', '../pulsedb.duckdb') }}"
+      schema: main_elementary
+      threads: 4

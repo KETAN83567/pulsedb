@@ -7,6 +7,13 @@ sources:
     tables:
       - name: gh_events
         description: "Lightweight projection of GH Archive events (see ingestion/gh_archive_pipeline.py)."
+        # Freshness SLA is keyed on _loaded_at (when OUR pipeline last loaded a
+        # batch) — NOT the event timestamps, which are historical and would
+        # always look stale. This measures pipeline liveness, the real signal.
+        loaded_at_field: _loaded_at
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 48, period: hour}
         columns:
           - name: event_id
             description: "GitHub event id (natural key). Unique per event."

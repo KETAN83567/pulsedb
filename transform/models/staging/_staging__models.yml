@@ -3,6 +3,14 @@ version: 2
 models:
   - name: stg_events
     description: "Silver: typed GitHub events that pass the data-quality contract. Grain: one row per event."
+    config:
+      elementary:
+        timestamp_column: "created_at_utc" # time axis for volume/anomaly monitoring
+    data_tests:
+      # Schema drift: alert if columns are added/removed/retyped.
+      - elementary.schema_changes
+      # Row-volume anomalies over time (learns a baseline as history accumulates).
+      - elementary.volume_anomalies
     columns:
       - name: event_id
         description: "Natural key. Unique, non-null."

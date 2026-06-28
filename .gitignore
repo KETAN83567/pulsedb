@@ -26,9 +26,11 @@ transform/logs/
 .dagster_home/
 tmp*/
 
-# Elementary / quality outputs
+# Elementary / quality outputs (generated report + logs — regenerate via quality/README.md)
 edr_target/
 .elementary/
+quality/elementary_report/
+transform/package-lock.yml.bak
 
 # OS
 .DS_Store

@@ -1,0 +1,6 @@
+packages:
+  - package: elementary-data/elementary
+    version: 0.25.0
+    # dbt-native data observability: logs run/test results to an
+    # `<schema>_elementary` schema and powers anomaly tests + the edr HTML report.
+    # Docs: https://docs.elementary-data.com

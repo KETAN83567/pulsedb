@@ -20,3 +20,7 @@ models:
       +materialized: view
     marts:
       +materialized: table # gold: serving layer, query-fast
+  # Elementary observability models land in `main_elementary` (artifacts,
+  # metrics, test/run results). Populated automatically on each dbt build.
+  elementary:
+    +schema: "elementary"
