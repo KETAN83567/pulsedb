@@ -13,6 +13,8 @@ dependencies = [
     "pyarrow>=17",           # Parquet I/O
     "requests>=2.32",        # GH Archive downloads / GitHub API
     "dagster-dbt==0.29.11",
+    "streamlit>=1.40",
+    "altair>=5",
 ]
 
 # Non-package project (an application, not a distributable library) -> no build backend needed.
