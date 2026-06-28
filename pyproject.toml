@@ -12,6 +12,7 @@ dependencies = [
     "duckdb>=1.1",           # local warehouse engine
     "pyarrow>=17",           # Parquet I/O
     "requests>=2.32",        # GH Archive downloads / GitHub API
+    "dagster-dbt==0.29.11",
 ]
 
 # Non-package project (an application, not a distributable library) -> no build backend needed.

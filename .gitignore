@@ -24,6 +24,7 @@ transform/logs/
 
 # Dagster
 .dagster_home/
+.tmp_dagster_home_*/
 tmp*/
 
 # Elementary / quality outputs (generated report + logs — regenerate via quality/README.md)
