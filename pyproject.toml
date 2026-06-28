@@ -3,7 +3,7 @@ name = "pulsedb"
 version = "0.1.0"
 description = "Incremental, quality-gated analytics warehouse for open-source developer activity (GH Archive)."
 requires-python = ">=3.12,<3.13"
-# Dependencies grow per build phase (see project notes Build Roadmap). Exact versions are pinned in uv.lock.
+# Exact versions are pinned in uv.lock.
 dependencies = [
     "dlt[duckdb]>=1.5",      # extract/load with schema evolution + incremental state (Phase 1)
     "dbt-duckdb>=1.8",       # transformations: staging -> intermediate -> marts (Phase 2)

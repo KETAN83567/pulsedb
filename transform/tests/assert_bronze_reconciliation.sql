@@ -1,4 +1,4 @@
--- Reconciliation invariant (project notes C2 Definition of Done #3):
+-- Reconciliation invariant (Definition of Done):
 --   raw bronze count == stg_events count + quarantine_events count
 -- Proves the Silver split is lossless: every bronze row is either cleaned or
 -- quarantined, never silently dropped. Passes when it returns ZERO rows.

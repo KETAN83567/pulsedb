@@ -1,7 +1,7 @@
 # Screenshots
 
 Drop portfolio screenshots here and reference them from the root `README.md`.
-Suggested captures (see project notes §11):
+Suggested captures:
 
 1. `architecture.png` — the README architecture diagram rendered
 2. `dbt_lineage.png` — `dbt docs generate && dbt docs serve` lineage graph

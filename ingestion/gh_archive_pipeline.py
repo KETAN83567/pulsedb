@@ -4,7 +4,7 @@ GH Archive publishes one gzip-compressed JSON-lines file per hour at
 `https://data.gharchive.org/<YYYY-MM-DD-H>.json.gz` (hour is NOT zero-padded).
 Each line is a single public GitHub event.
 
-Design (see project notes Part B §5, §7):
+Design:
 - Bronze keeps ALL events but only the lightweight columns we need for momentum metrics,
   plus the one nested field that matters (`payload.action`, e.g. PR opened/closed). We do
   NOT store the full multi-KB event payloads (commit/PR/issue bodies) -- doing so ballooned

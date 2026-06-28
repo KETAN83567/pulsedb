@@ -3,7 +3,7 @@
 __pycache__/
 *.py[cod]
 
-# Secrets / env  (NEVER commit — see project notes Part A §6)
+# Secrets / env  (NEVER commit)
 .env
 .env.*
 secrets/
