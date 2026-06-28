@@ -134,6 +134,23 @@ with tab_activity:
         )
         st.altair_chart(area, width="stretch")
 
+    st.write("")
+    st.subheader("Event-type intensity heatmap")
+    st.caption("Where activity concentrates: each cell is one event type in one minute.")
+    heat = (
+        alt.Chart(pmt)
+        .mark_rect()
+        .encode(
+            x=alt.X("minute:T", title=None),
+            y=alt.Y("event_type:N", title=None),
+            color=alt.Color("events:Q", scale=alt.Scale(scheme="magma"),
+                            legend=alt.Legend(title="Events / min")),
+            tooltip=["minute:T", "event_type:N", "events:Q"],
+        )
+        .properties(height=380)
+    )
+    st.altair_chart(heat, width="stretch")
+
 # ============================ REPOSITORIES ============================
 with tab_repos:
     top = st.columns([3, 2])

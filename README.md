@@ -81,10 +81,12 @@ warehouse:
 partition, an interactive run-duration timeline, and the full run log from
 `meta.pipeline_runs`. (The operational page most portfolio dashboards omit.)
 
-<!-- Screenshots — drop PNGs into docs/screenshots/ with these names. -->
+<!-- Screenshots — drop PNGs into docs/screenshots/ with these names (see docs/screenshots/README.md). -->
 | Business view | Pipeline health |
 |---|---|
 | ![Business dashboard](docs/screenshots/dashboard_business.png) | ![Pipeline health](docs/screenshots/dashboard_health.png) |
+| **Dagster asset graph** | **Elementary report** |
+| ![Dagster asset graph](docs/screenshots/dagster_graph.png) | ![Elementary report](docs/screenshots/elementary_report.png) |
 
 ## Quickstart
 
