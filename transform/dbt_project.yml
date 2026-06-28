@@ -1,0 +1,22 @@
+name: "pulsedb"
+version: "1.0.0"
+config-version: 2
+
+# Which profile (in profiles.yml) tells dbt how to connect to the warehouse.
+profile: "pulsedb"
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  pulsedb:
+    staging:
+      +materialized: view # silver: cheap, always reflects latest bronze
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table # gold: serving layer, query-fast

@@ -1,0 +1,11 @@
+# Project-local dbt profile. Run dbt from this folder with `--profiles-dir .`
+# (or set DBT_PROFILES_DIR=transform). Keeps the connection reproducible and in-repo.
+# No secrets here — DuckDB is a local file, so this is safe to commit.
+pulsedb:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "../pulsedb.duckdb" # warehouse lives at the project root
+      threads: 4
+      schema: main

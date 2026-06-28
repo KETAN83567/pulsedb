@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: raw
+    description: "Bronze layer — raw GH Archive events loaded by dlt (one row per public GitHub event)."
+    schema: raw
+    tables:
+      - name: gh_events
+        description: "Lightweight projection of GH Archive events (see ingestion/gh_archive_pipeline.py)."
+        columns:
+          - name: event_id
+            description: "GitHub event id (natural key). Unique per event."
+            data_tests:
+              - unique
+              - not_null
+          - name: event_type
+            description: "Event class, e.g. PushEvent, PullRequestEvent."
+          - name: created_at
+            description: "Event timestamp (TIMESTAMP WITH TIME ZONE). Standardized to UTC in staging."

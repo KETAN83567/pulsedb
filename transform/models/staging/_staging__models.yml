@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: stg_events
+    description: "Silver: typed GitHub events that pass the data-quality contract. Grain: one row per event."
+    columns:
+      - name: event_id
+        description: "Natural key. Unique, non-null."
+        data_tests:
+          - unique
+          - not_null
+      - name: event_type
+        description: "Event class (PushEvent, PullRequestEvent, …)."
+        data_tests:
+          - not_null
+      - name: repo_id
+        description: "GitHub repository id."
+        data_tests:
+          - not_null
+      - name: actor_id
+        description: "GitHub actor (user) id."
+        data_tests:
+          - not_null
+      - name: created_at_utc
+        description: "Event time, standardized to a naive UTC timestamp."
+        data_tests:
+          - not_null
+      - name: event_date
+        description: "UTC calendar date of the event (for daily rollups)."
+        data_tests:
+          - not_null
+
+  - name: quarantine_events
+    description: "Silver: events rejected by the data-quality contract, with a dq_reason. No silent drops."
+    columns:
+      - name: dq_reason
+        description: "Why the row was quarantined (which contract rule it violated)."
+        data_tests:
+          - not_null

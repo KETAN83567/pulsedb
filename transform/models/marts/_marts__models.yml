@@ -1,0 +1,46 @@
+version: 2
+
+models:
+  - name: dim_repo
+    description: "Gold: one row per repository, with activity summary."
+    columns:
+      - name: repo_sk
+        description: "Surrogate key."
+        data_tests: [unique, not_null]
+      - name: repo_id
+        data_tests: [unique, not_null]
+
+  - name: dim_actor
+    description: "Gold: one row per actor (GitHub user/bot)."
+    columns:
+      - name: actor_sk
+        description: "Surrogate key."
+        data_tests: [unique, not_null]
+      - name: actor_id
+        data_tests: [unique, not_null]
+
+  - name: fact_events
+    description: "Gold: one row per event with surrogate FKs to dim_repo and dim_actor."
+    columns:
+      - name: event_id
+        data_tests: [unique, not_null]
+      - name: repo_sk
+        description: "FK to dim_repo."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_repo')
+              field: repo_sk
+      - name: actor_sk
+        description: "FK to dim_actor."
+        data_tests:
+          - not_null
+          - relationships:
+              to: ref('dim_actor')
+              field: actor_sk
+
+  - name: agg_daily_repo_momentum
+    description: "Gold: weighted daily momentum score per repo, with day-over-day change. Grain (repo_id, event_date) enforced by tests/assert_momentum_grain_unique.sql."
+    columns:
+      - name: momentum_score
+        data_tests: [not_null]
