@@ -1,0 +1,23 @@
+[project]
+name = "pulsedb"
+version = "0.1.0"
+description = "Incremental, quality-gated analytics warehouse for open-source developer activity (GH Archive)."
+requires-python = ">=3.12,<3.13"
+# Dependencies grow per build phase (see project notes Build Roadmap). Exact versions are pinned in uv.lock.
+dependencies = [
+    "dlt[duckdb]>=1.5",      # extract/load with schema evolution + incremental state (Phase 1)
+    "dbt-duckdb>=1.8",       # transformations: staging -> intermediate -> marts (Phase 2)
+    "dagster>=1.8",          # orchestration assets + schedules (Phase 4)
+    "dagster-webserver>=1.8",# Dagster UI
+    "duckdb>=1.1",           # local warehouse engine
+    "pyarrow>=17",           # Parquet I/O
+    "requests>=2.32",        # GH Archive downloads / GitHub API
+]
+
+# Non-package project (an application, not a distributable library) -> no build backend needed.
+[tool.uv]
+package = false
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
